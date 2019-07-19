@@ -1,0 +1,75 @@
+*
+   margin: 0
+   padding: 0
+   box-sizing: border-box
+
+body
+   width: 100%
+   height: 100vh
+   background-color: #000
+
+.navigation
+   width: 100%
+   height: 60px
+   border-bottom: 1px solid #2b2a2a
+   color: #ffffff
+   ul
+      list-style: none
+   &__menu
+      width: 100%
+      height: 100%
+      display: grid
+      justify-items: center
+      align-items: center
+      grid-template-columns: repeat(6, 1fr)
+      cursor: pointer
+   &__item
+      position: relative
+      width: 100%
+      height: 100%
+      text-align: center
+      line-height: 60px
+      @for $i from 1 through 5
+         &:nth-child(#{$i})
+            border-right: 1px solid #2b2a2a  
+      &:hover > ul.drop-menu
+         opacity: 1
+         perspective: 1000px
+         li
+            opacity: 0   
+            @for $i from 1 through 7
+               &:nth-child(#{$i})
+                  animation: menu1 ease 400ms forwards
+                     delay: (150ms * $i) - 300
+      &:hover > ul.drop-menu li
+         display: block  
+   @keyframes menu1
+      0%
+         opacity: 0
+         transform: rotateY(-180deg) 
+      100%
+         opacity: 1
+         transform: rotateY(0deg) 
+      
+
+.drop
+   &-menu 
+      position: absolute
+      top: 100%
+      left: 0%
+      width: 100%
+      line-height: 40px
+      background-color: #292929
+      border-radius: 0px 0px 5px 5px
+
+   &-item
+      display: none
+      border-bottom: 1px solid black
+      transition: all 300ms ease
+      &:hover
+         box-shadow: 0px 0px 6px 2px #963390
+         text-shadow: 0px 0px 3px #963390
+         color: #963390
+         
+      
+      
